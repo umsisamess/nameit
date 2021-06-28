@@ -1,0 +1,23 @@
+/* body{
+    background-color: rgb(209, 206, 206);
+} */
+.container{
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    display:flex;
+    justify-content: space-around;
+}
+
+#create,
+#join{
+    font-size: 2rem;
+    height: 300px;
+    width: 300px;
+    border-radius:25px;
+    margin-left: 10px;
+}
+
+#create:hover,
+#join:hover{
+    background-color: rgb(209, 206, 206);
+}

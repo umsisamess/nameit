@@ -1,0 +1,25 @@
+body{
+    font-size: 2rem;
+}
+#username-form{
+    /* margin : 20% 37%; */
+    text-align: center;
+    margin-top: 35vh;
+}
+#username{
+    font-size: 1.2rem;
+    height:35px;
+    width: 300px;
+    border : 2px solid black;
+    border-radius: 8px;
+    outline: none;
+}
+
+#submit{
+    font-size: 1.1rem;
+    margin: 10px 80px;
+    height: 35px;
+    width: 100px;
+    border : 1px solid black;
+    border-radius : 15px;
+}
