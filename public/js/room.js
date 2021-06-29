@@ -1,3 +1,6 @@
+// const { Socket } = require("socket.io");
+const socket = io.connect('http://localhost:3000');
+
 const create = document.querySelector('#create');
 const join = document.querySelector('#join');
 
@@ -13,10 +16,14 @@ function createClick(){
     let room = {
         id : roomId,
         host : sessionStorage.getItem('users'),
-        members : [],
+        members : [sessionStorage.getItem('users')],
     };
     sessionStorage.setItem('roomcode',JSON.stringify(room));
-    location.href = '/lobby';
+
+    //emit events
+    socket.emit('roommade', room);
+
+    location.href = `/lobby/${roomId}`;
 }
 
 function joinClick(){
