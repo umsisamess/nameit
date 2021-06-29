@@ -11,7 +11,7 @@ function addUsername(e){
         console.log('enter username');
     }else{
         console.log(user);
+        sessionStorage.setItem('users',user);
+        location.href = '/room';
     }
-    sessionStorage.setItem('users',user);
-    location.href = '/room';
 }

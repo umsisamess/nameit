@@ -5,16 +5,22 @@ create.addEventListener('click',createClick);
 join.addEventListener('click',joinClick);
 
 function createClick(){
-    if(sessionStorage.getItem('users')==''){
+    if(sessionStorage.getItem('users')===null){
         location.href = '/index';
         return;
     }
     roomId = makeId(5);
+    let room = {
+        id : roomId,
+        host : sessionStorage.getItem('users'),
+        members : [],
+    };
+    sessionStorage.setItem('roomcode',JSON.stringify(room));
     location.href = '/lobby';
 }
 
 function joinClick(){
-    if(sessionStorage.getItem('users')==''){
+    if(sessionStorage.getItem('users')===null){
         location.href = '/index';
         return;
     }
