@@ -12,16 +12,24 @@ function joinRoom(){
         console.log("Enter the code ");
     }
     else{
+        console.log(sessionStorage);
         socket.emit('canIJoin',{
             roomId: roomId,
-            user: sessionStorage.getItem('users'),   
+            user: sessionStorage.getItem('users'),
+            sid : socket.id,   
         });
         console.log(roomId);
         alert('yo');
 
         socket.on('youCanJoin',(data)=>{
+            console.log(data);
             sessionStorage.setItem('roomInfo',JSON.stringify(data));
             location.href = `/lobby/${roomId}`;
+            
+        })
+
+        socket.on('youCantJoin',(data)=>{
+            alert('your name coincides with someone else in the room');
         })
 
     }

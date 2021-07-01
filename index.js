@@ -1,5 +1,6 @@
 const express = require('express');
 const socket = require('socket.io');
+
 let rooms;
 if(!rooms){
     rooms = [];
@@ -26,10 +27,24 @@ io.on('connection',(socket)=>{
         for(let room of rooms){
             if(room.id===data.roomId){
                 console.log('you can');
-                room.members.push(data.user);
-                console.log(room);
-                io.sockets.emit('youCanJoin', room);
-                break;
+                let flag = 0;
+                for(let member of room.members){
+                    console.log(member);
+                    console.log(data.user);
+                    if(member===data.user){
+                        flag = 1;
+                    }
+                }
+                if(flag===0){
+                    room.members.push(data.user);
+                    console.log(room);
+                    io.to(data.sid).emit('youCanJoin', room);
+                    break;
+                }else{
+                    io.to(data.sid).emit('youCantJoin', room);
+                    break;
+                }
+                
             }
         }
     })
@@ -37,6 +52,8 @@ io.on('connection',(socket)=>{
     socket.on('iJoined',(data)=>{
         io.sockets.emit('someoneJoined',data);
     })
+
+
 })
 
 app.set('view engine','ejs');
@@ -54,6 +71,11 @@ app.get('/room',(req,res)=>{
     res.render('room');
 })
 
+app.get('/joinroom',(req,res)=>{
+    res.render('joinroom');
+})
+
+
 app.get('/lobby/:id',(req,res)=>{
     const id = req.params.id;
     for(let room of rooms){
@@ -63,8 +85,9 @@ app.get('/lobby/:id',(req,res)=>{
     }
 })
 
-app.get('/joinroom',(req,res)=>{
-    res.render('joinroom');
+app.get('/selectdomain',(req,res)=>{
+    res.render('selectdomain');
 })
+
 
 
