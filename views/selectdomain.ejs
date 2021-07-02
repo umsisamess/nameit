@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Domains</title>
+    <link rel="stylesheet" href="/css/selectdomain.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Select any 5 domains</h2>
+        <div class="selection">
+            <div class="builtin">
+                <button id="p-domain">Name</button>                
+                <button id="p-domain">Country</button>                
+                <button id="p-domain">Animal</button>                
+                <button id="p-domain">City</button>                
+                <button id="p-domain">Colour</button>                
+                <button id="p-domain">Furniture</button>                
+                <button id="p-domain">Job</button>                
+                <button id="p-domain">Sport</button>                
+                <button id="p-domain">Song</button>                
+                <button id="p-domain">Movie</button>                
+                <button id="p-domain">Book</button>                
+
+            </div>
+            <div class="custom">
+                <h2>Custom</h2>
+                <textarea name="custom" id="custom" cols="30" rows="10"></textarea><br>
+                <button id="add">Add</button>
+            </div>
+        </div>
+        <div class="selected">
+            <h2 id="selected">Selected Domains</h2>
+        </div>
+        <button id="done">Done</button>
+    </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<script src="/js/selectdomain.js"></script>
+</html>

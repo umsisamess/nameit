@@ -32,6 +32,10 @@ function joinRoom(){
             alert('your name coincides with someone else in the room');
         })
 
+        // socket.on('success',(data)=>{
+        //     alert(data);
+        // })
+
     }
 }
 
