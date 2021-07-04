@@ -112,6 +112,10 @@ io.on('connection',(socket)=>{
         }
     })
 
+    socket.on('weWannaPlayAgain',(data)=>{
+        io.sockets.emit('thenPlay',data);
+    })
+
 })
 
 app.set('view engine','ejs');

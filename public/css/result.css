@@ -1,0 +1,13 @@
+th,td{
+    border: 2px solid black;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+}
+
+#next{
+    width: 100px;
+    height: 35px;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    background-color: rgb(161, 235, 161);
+}

@@ -79,6 +79,7 @@ socket.on('someoneSubmitted',(data)=>{
         noOfMembers : totalMembers,
         user : user,
         values : values,
+        domains : domains,
     })
 
 })
