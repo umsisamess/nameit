@@ -6,6 +6,11 @@ if(!rooms){
     rooms = [];
 }
 
+let domainValues;
+if(!domainValues){
+    domainValues = [];
+}
+
 //app setup
 const app = express();
 const server = app.listen(3000,()=>{
@@ -94,6 +99,18 @@ io.on('connection',(socket)=>{
         }
     })
 
+    socket.on('iSubmitted',(data)=>{
+        domainValues = [];
+        io.sockets.emit('someoneSubmitted',data);
+    })
+
+    socket.on('mySubmission',(data)=>{
+        domainValues. push(data);
+        if(domainValues.length===data.noOfMembers){
+            console.log('it is equal');
+            io.sockets.emit('allSubmissions',domainValues);
+        }
+    })
 
 })
 
@@ -145,6 +162,10 @@ app.get('/play/:id',(req,res)=>{
             break;
         }
     }
+})
+
+app.get('/result',(req,res)=>{
+    res.render('result');
 })
 
 
