@@ -4,32 +4,42 @@ const resultTable = document.querySelector('#resultTable');
 const submissions = JSON.parse(sessionStorage.getItem('submissions'));
 const nextBtn = document.querySelector('#next');
 
+let infoRoom;
 let rm;
 let Room = JSON.parse(sessionStorage.getItem('roomcode'));
 if(Room){
+    infoRoom = Room;
     nextBtn.disabled = false;
 }else{
     rm = JSON.parse(sessionStorage.getItem('roomInfo'));
+    infoRoom = rm;
     nextBtn.disabled = true;
 }
 
 resultTable.innerHTML = '';
 
-for(let i=0;i<submissions.length;i++){
+for(let i=0;i<submissions.dv.length;i++){
     let m;
-    submissions[i].score = 0;
+    submissions.dv[i].score = 0;
     for(k=0;k<5;k++){
-        for(j=0;j<submissions.length;j++){
+        for(j=0;j<submissions.dv.length;j++){
             m = 0;
+            console.log(submissions.dv[i].values[k]==='' || submissions.dv[i].values[k].charAt(0).toUpperCase());
+            console.log(submissions.rw);
+            if(submissions.dv[i].values[k].charAt(0).toUpperCase()!==submissions.rw){
+                m = 1;
+                break;
+            }
             if(i!=j){
-                if(submissions[i].values[k]===submissions[j].values[k] || submissions[i].values[k]===''){
+                if(submissions.dv[i].values[k]===submissions.dv[j].values[k] || submissions.dv[i].values[k]===''){
+                    console.log("score wont rise");
                     m = 1;
                     break;
                 }
             }
         }
         if(m===0){
-            submissions[i].score += 1;
+            submissions.dv[i].score += 1;
         }
     }
     
@@ -37,7 +47,7 @@ for(let i=0;i<submissions.length;i++){
 
 sessionStorage.setItem('submissions',JSON.stringify(submissions));
 
-dm = submissions[0].domains;
+dm = submissions.dv[0].domains;
 
 resultTable.innerHTML +=`
     <tr>
@@ -51,17 +61,17 @@ resultTable.innerHTML +=`
     </tr>
 `
 
-for(let i=0;i<submissions.length;i++){
-    let data = submissions[i].values;
+for(let i=0;i<submissions.dv.length;i++){
+    let data = submissions.dv[i].values;
     resultTable.innerHTML += `
     <tr>
-        <td>${submissions[i].user}</td>
+        <td>${submissions.dv[i].user}</td>
         <td>${data[0]}</td>
         <td>${data[1]}</td>
         <td>${data[2]}</td>
         <td>${data[3]}</td>
         <td>${data[4]}</td>
-        <td>${submissions[i].score}</td>
+        <td>${submissions.dv[i].score}</td>
     </tr>
     `
 }
@@ -69,13 +79,12 @@ for(let i=0;i<submissions.length;i++){
 nextBtn.addEventListener('click',backToGame);
 
 function backToGame(){
-    socket.emit('weWannaPlayAgain','lets play');
+    socket.emit('weWannaPlayAgain',infoRoom);
 }
 
 socket.on('thenPlay',(data)=>{
-    if(Room){
-        location.href = `/play/${Room.id}`;
-    }else{
-        location.href = `/play/${rm.id}`;
+    if(infoRoom.id===data.id){
+        sessionStorage.removeItem('submissions');
+        location.href = `/play/${infoRoom.id}`;
     }
 })

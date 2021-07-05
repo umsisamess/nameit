@@ -69,9 +69,13 @@ else{
 socket.on('goToPlay',(data)=>{
     let Room = JSON.parse(sessionStorage.getItem('roomcode'));
     if(Room){
-        location.href = `/play/${Room.id}`;
+        if(Room.id===data.code){
+            location.href = `/play/${Room.id}`;
+        }    
     }else{
         let rm = JSON.parse(sessionStorage.getItem('roomInfo'));
-        location.href = `/play/${rm.id}`;
+        if(rm.id===data.code){
+            location.href = `/play/${rm.id}`;
+        }    
     }
 })

@@ -1,5 +1,6 @@
 const username = document.querySelector('#username');
 const submit = document.querySelector('#submit');
+sessionStorage.clear();
 var user='';
 
 submit.addEventListener('click',addUsername);

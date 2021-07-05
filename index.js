@@ -76,7 +76,7 @@ io.on('connection',(socket)=>{
                 break;
             }
         }
-        io.sockets.emit('goToPlay','go');
+        io.sockets.emit('goToPlay',data);
     })
 
     socket.on('domainSelect',(data)=>{
@@ -90,6 +90,7 @@ io.on('connection',(socket)=>{
         for(let room of rooms){
             if(room.id===data){
                 let toBeSent = {
+                    id : data,
                     domains : room.domains,
                     ranChar : result,
                 }
@@ -105,10 +106,13 @@ io.on('connection',(socket)=>{
     })
 
     socket.on('mySubmission',(data)=>{
-        domainValues. push(data);
-        if(domainValues.length===data.noOfMembers){
+        domainValues. push(data.sub);
+        if(domainValues.length===data.sub.noOfMembers){
             console.log('it is equal');
-            io.sockets.emit('allSubmissions',domainValues);
+            io.sockets.emit('allSubmissions',{
+                inf : data.rom,
+                domainValues : domainValues
+            });
         }
     })
 
@@ -168,8 +172,14 @@ app.get('/play/:id',(req,res)=>{
     }
 })
 
-app.get('/result',(req,res)=>{
-    res.render('result');
+app.get('/result/:id',(req,res)=>{
+    const id = req.params.id;
+    for(let room of rooms){
+        if(room.id===id){
+            res.render('result',room);
+            break;
+        }
+    }
 })
 
 
