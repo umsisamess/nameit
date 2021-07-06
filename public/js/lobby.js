@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://startwith.herokuapp.com');
 
 const roomcode = document.querySelector('.roomcode');
 const activeusers = document.querySelector('.activeusers');
@@ -41,7 +41,7 @@ socket.on('someoneJoined',(data)=>{
         }
         
         currentUrl = window.location.href;
-        if(currentUrl===`http://localhost:3000/lobby/${data.id}`){
+        if(currentUrl===`https://startwith.herokuapp.com/lobby/${data.id}`){
             roomcode.innerHTML = `<h3> The room code is ${data.id}</h3>`;
             activeusers.innerHTML = '';
             for(let person of data.members){

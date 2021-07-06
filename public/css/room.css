@@ -5,13 +5,13 @@
     margin-top: 20vh;
     margin-bottom: 20vh;
     display:flex;
-    justify-content: space-around;
+    flex-wrap: wrap;    justify-content: space-around;
 }
 
 #create,
 #join{
     font-size: 2rem;
-    height: 300px;
+    height: 200px;
     width: 300px;
     border-radius:25px;
     margin-left: 10px;

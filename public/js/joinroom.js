@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect(`https://startwith.herokuapp.com`);
 
 const roomcode = document.querySelector('#roomcode');
 const submit = document.querySelector('#submit');

@@ -1,5 +1,5 @@
 // const { Socket } = require("socket.io");
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://startwith.herokuapp.com');
 
 const create = document.querySelector('#create');
 const join = document.querySelector('#join');

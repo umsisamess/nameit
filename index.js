@@ -1,3 +1,4 @@
+const PORT = process.env.PORT||3000;
 const express = require('express');
 const socket = require('socket.io');
 
@@ -13,7 +14,7 @@ if(!domainValues){
 
 //app setup
 const app = express();
-const server = app.listen(3000,()=>{
+const server = app.listen(PORT,()=>{
     console.log('listening to requests on port 3000');
 });
 
