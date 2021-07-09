@@ -4,6 +4,7 @@ const answers = document.querySelector('.answers');
 const randomWord = document.querySelector('.randomword');
 const done = document.querySelector('#done');
 
+
 const user = sessionStorage.getItem('users');
 
 let totalMembers;
@@ -14,12 +15,12 @@ let Room = JSON.parse(sessionStorage.getItem('roomcode'));
 if(Room){
     infoRoom = Room;
     totalMembers = Room.members.length;
-    socket.emit('iNeedDomains',Room.id);
+    socket.emit('iNeedDomains',Room);
 }else{
     let rm = JSON.parse(sessionStorage.getItem('roomInfo'));
     infoRoom = rm;
     totalMembers = rm.members.length;
-    socket.emit('iNeedDomains',rm.id);
+    socket.emit('iNeedDomains',rm);
 }
 
 let domains = [];

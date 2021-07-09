@@ -12,6 +12,8 @@ if(!domainValues){
     domainValues = [];
 }
 
+let ranchar = 'A';
+
 //app setup
 const app = express();
 const server = app.listen(PORT,()=>{
@@ -86,17 +88,20 @@ io.on('connection',(socket)=>{
 
     socket.on('iNeedDomains',(data)=>{
         let charac = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var result = '';
-        result = charac.charAt(Math.floor(Math.random()*charac.length));
+        // ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
         for(let room of rooms){
-            if(room.id===data){
-                let toBeSent = {
-                    id : data,
-                    domains : room.domains,
-                    ranChar : result,
-                }
-                io.sockets.emit('takeTheDomains',toBeSent);
-                break;
+            if(room.id===data.id){
+                if(room.host===data.host){
+                    ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
+                    let toBeSent = {
+                        id : data.id,
+                        domains : room.domains,
+                        ranChar : ranchar,
+                    }
+                    io.sockets.emit('takeTheDomains',toBeSent);
+                    break;
+                } 
+                
             }
         }
     })
