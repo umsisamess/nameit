@@ -106,6 +106,14 @@ io.on('connection',(socket)=>{
         }
     })
 
+    socket.on('iNeedHostData',(data)=>{
+        io.sockets.emit('hostDataNeeded',data);
+    })
+
+    socket.on('takeIt',(data)=>{
+        socket.emit('takeTheDomains',data);
+    })
+
     socket.on('iSubmitted',(data)=>{
         domainValues = [];
         io.sockets.emit('someoneSubmitted',data);

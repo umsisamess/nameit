@@ -23,13 +23,15 @@ if(Room){
     let rm = JSON.parse(sessionStorage.getItem('roomInfo'));
     infoRoom = rm;
     totalMembers = rm.members.length;
-    socket.emit('iNeedDomains',{
+    socket.emit('iNeedHostData',{
         room : rm,
         user : user,
     });
 }
 
 let domains = [];
+
+let providedData;
 
 socket.on('takeTheDomains',(data)=>{
     if(infoRoom.id===data.id){
@@ -53,6 +55,17 @@ socket.on('takeTheDomains',(data)=>{
     
     
 })
+
+socket.on('hostDataNeeded',(data)=>{
+    if(data.room.host === data.user){
+        socket.emit('takeIt',{
+            ranchar : randomWord.innerText,
+            domains : domains,
+            id : data.room.id,
+        })
+    }
+})
+
 
 done.addEventListener('click',doneClicked);
 
