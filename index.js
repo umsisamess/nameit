@@ -12,7 +12,6 @@ if(!domainValues){
     domainValues = [];
 }
 
-let ranchar = 'A';
 
 //app setup
 const app = express();
@@ -92,7 +91,7 @@ io.on('connection',(socket)=>{
         for(let room of rooms){
             if(room.id===data.room.id){
                 if(room.host===data.user){
-                    ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
+                    let ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
                     let toBeSent = {
                         id : data.room.id,
                         domains : room.domains,
@@ -104,14 +103,6 @@ io.on('connection',(socket)=>{
                 
             }
         }
-    })
-
-    socket.on('iNeedHostData',(data)=>{
-        io.sockets.emit('hostDataNeeded',data);
-    })
-
-    socket.on('takeIt',(data)=>{
-        socket.emit('takeTheDomains',data);
     })
 
     socket.on('iSubmitted',(data)=>{

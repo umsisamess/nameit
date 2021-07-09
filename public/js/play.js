@@ -31,7 +31,6 @@ if(Room){
 
 let domains = [];
 
-let providedData;
 
 socket.on('takeTheDomains',(data)=>{
     if(infoRoom.id===data.id){
@@ -54,16 +53,6 @@ socket.on('takeTheDomains',(data)=>{
     }
     
     
-})
-
-socket.on('hostDataNeeded',(data)=>{
-    if(data.room.host === data.user){
-        socket.emit('takeIt',{
-            ranchar : randomWord.innerText,
-            domains : domains,
-            id : data.room.id,
-        })
-    }
 })
 
 
