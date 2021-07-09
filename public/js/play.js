@@ -15,12 +15,18 @@ let Room = JSON.parse(sessionStorage.getItem('roomcode'));
 if(Room){
     infoRoom = Room;
     totalMembers = Room.members.length;
-    socket.emit('iNeedDomains',Room);
+    socket.emit('iNeedDomains',{
+        room : Room,
+        user : user,
+    });
 }else{
     let rm = JSON.parse(sessionStorage.getItem('roomInfo'));
     infoRoom = rm;
     totalMembers = rm.members.length;
-    socket.emit('iNeedDomains',rm);
+    socket.emit('iNeedDomains',{
+        room : rm,
+        user : user,
+    });
 }
 
 let domains = [];

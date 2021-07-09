@@ -90,11 +90,11 @@ io.on('connection',(socket)=>{
         let charac = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
         for(let room of rooms){
-            if(room.id===data.id){
-                if(room.host===data.host){
+            if(room.id===data.room.id){
+                if(room.host===data.user){
                     ranchar = charac.charAt(Math.floor(Math.random()*charac.length));
                     let toBeSent = {
-                        id : data.id,
+                        id : data.room.id,
                         domains : room.domains,
                         ranChar : ranchar,
                     }
