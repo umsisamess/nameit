@@ -1,25 +1,37 @@
-body{
-    font-size: 2rem;
+body {
+	font-size: 1.5rem;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: dimgrey;
 }
-#username-form{
-    /* margin : 20% 37%; */
-    text-align: center;
-    margin-top: 35vh;
+#username-form {
+	background-color: white;
+	padding: 2rem;
+	text-align: center;
 }
-#username{
-    font-size: 1.2rem;
-    height:35px;
-    width: 300px;
-    border : 2px solid black;
-    border-radius: 8px;
-    outline: none;
+#username {
+	padding: 0 0.5em;
+	text-align: center;
+	font-size: 1.2rem;
+	height: 40px;
+	width: 90%;
+	border: 1px solid black;
+	outline: none;
 }
 
-#submit{
-    font-size: 1.1rem;
-    margin: 10px 80px;
-    height: 35px;
-    width: 100px;
-    border : 1px solid black;
-    border-radius : 15px;
+#submit {
+	font-size: 1.1rem;
+	margin: 1em auto 0;
+	height: 40px;
+	width: 120px;
+	border: none;
+	background-color: dimgrey;
+	color: white;
+	transition: all 0.4s ease;
+}
+
+#submit:hover {
+	background-color: grey;
 }
