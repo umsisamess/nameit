@@ -1,23 +1,31 @@
-/* body{
-    background-color: rgb(209, 206, 206);
-} */
-.container{
-    margin-top: 20vh;
-    margin-bottom: 20vh;
-    display:flex;
-    flex-wrap: wrap;    justify-content: space-around;
+body {
+	background-color: dimgray;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 80%;
+	max-width: 1000px;
+	min-width: 260px;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
 }
 
 #create,
-#join{
-    font-size: 2rem;
-    height: 200px;
-    width: 300px;
-    border-radius:25px;
-    margin-left: 10px;
+#join {
+	font-size: 1.2rem;
+	height: 80px;
+	width: 250px;
+	margin: 1em;
+	border: none;
+	background-color: white;
 }
 
 #create:hover,
-#join:hover{
-    background-color: rgb(209, 206, 206);
+#join:hover {
+	background-color: rgb(235, 235, 235);
 }
